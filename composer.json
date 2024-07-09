@@ -1,38 +1,45 @@
 {
-    "name": "inverseschool/omnipay-digipay",
+    "name": "armezit/omnipay-digipay",
     "type": "library",
+    "description": "Digipay driver for the Omnipay payment processing library",
+    "keywords": [
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment",
+        "digipay"
+    ],
+    "homepage": "https://github.com/saalid/omnipay-digipay",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Omnipay\\Digipay\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Omnipay\\Digipay\\Tests\\": "tests/"
-        }
-    },
     "authors": [
         {
-            "name": "amirreza.salari",
+            "name": "Amirreza Salari",
             "email": "amirrezasalari1997@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": { "Omnipay\\Digipay\\" : "src/" }
+    },
     "require": {
-        "php": "^7.4",
+        "php": "^7.2|^8.0",
         "ext-json": "*",
-        "ext-mbstring": "*",
         "omnipay/common": "^3",
-        "symfony/http-client": "^5"
+        "symfony/http-client": "^5.4"
     },
     "require-dev": {
         "omnipay/tests": "^4",
-        "php-http/guzzle7-adapter": "^1",
         "phpunit/phpunit": "^9",
         "squizlabs/php_codesniffer": "^3",
         "phpstan/phpstan": "^1.8",
         "http-interop/http-factory-guzzle": "^1.2"
+    },
+    "prefer-stable": true,
+    "minimum-stability": "stable",
+    "scripts": {
+        "lint": "phpcs",
+        "phpstan": "phpstan",
+        "test": "phpunit"
     },
     "config": {
         "allow-plugins": {
