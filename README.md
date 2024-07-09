@@ -1,2 +1,2 @@
 # omnipay-digipay
-This Package for digipay gateway
+Digipay driver for the Omnipay PHP payment processing library
