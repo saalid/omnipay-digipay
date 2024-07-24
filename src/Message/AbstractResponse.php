@@ -18,6 +18,15 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
     protected $errorCodes = [];
 
     /**
+     * @var array
+     */
+    protected array $paymentGatewayTypesCodes = [
+        0 => 'IPG',
+        3 => 'WALLET',
+        4 => 'CPG'
+    ];
+
+    /**
      * Response Message
      *
      * @return null|string A response message from the payment gateway

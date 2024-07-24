@@ -22,12 +22,23 @@ class VerifyOrderResponse extends AbstractResponse
         return $request->getTransactionReference();
     }
 
+    public function getTransactionId()
+    {
+        return $this->data['providerId'];
+    }
+
+    public function getPaymentGatewayTypes()
+    {
+        return $this->paymentGatewayTypesCodes[$this->data['paymentGateway']];
+    }
+
+
     /**
      * @inheritDoc
      */
     public function isSuccessful()
     {
-        return (int)$this->getCode() === 200 && $this->data['status'] === 'Successful';
+        return (int)$this->getCode() === 200 && $this->data['result']['status'] === 0;
     }
 
     /**
@@ -35,7 +46,7 @@ class VerifyOrderResponse extends AbstractResponse
      */
     public function isCancelled()
     {
-        return (int)$this->getCode() === 200 && $this->data['status'] === 'Failed';
+        return (int)$this->getCode() === 200 && $this->data['result']['status'] === 1;
     }
 
     /**
@@ -44,6 +55,6 @@ class VerifyOrderResponse extends AbstractResponse
      */
     public function isPending()
     {
-        return (int)$this->getCode() === 200 && $this->data['status'] === 'Unknown';
+        return (int)$this->getCode() === 200 && $this->data['result']['status'] === 2;
     }
 }

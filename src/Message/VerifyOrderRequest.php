@@ -31,12 +31,29 @@ class VerifyOrderRequest extends AbstractRequest
         return $this->setParameter('state', $state);
     }
 
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->getParameter('type');
+    }
+
+    /**
+     * @param string $type
+     * @return self
+     */
+    public function setType(string $type)
+    {
+        return $this->setParameter('type', $type);
+    }
     /**
      * @inheritDoc
      */
     protected function getHttpMethod()
     {
-        return 'GET';
+        return 'POST';
     }
 
     /**
@@ -48,9 +65,6 @@ class VerifyOrderRequest extends AbstractRequest
      */
     public function getData()
     {
-        // Validate required parameters before return data
-        $this->validate('amount', 'transactionReference', 'state');
-
         return [];
     }
 
@@ -60,7 +74,7 @@ class VerifyOrderRequest extends AbstractRequest
      */
     protected function createUri(string $endpoint)
     {
-        return $endpoint . '/orders/' . $this->getTransactionReference() . '/verify';
+        return $endpoint . '/purchases/verify/' . $this->getTransactionReference() . '?type=' . $this->getType();
     }
 
     /**
@@ -82,7 +96,7 @@ class VerifyOrderRequest extends AbstractRequest
         parent::validate(...$args);
 
         // verify callback params returned from payment gateway
-        if ($this->getState() !== 'SUCCESSFUL') {
+        if ($this->getState() !== 'SUCCESS') {
             throw new InvalidRequestException("Payment was not successful");
         }
     }
