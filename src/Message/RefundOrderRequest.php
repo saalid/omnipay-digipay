@@ -9,7 +9,7 @@ namespace Omnipay\Digipay\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 
-class RefundTicketRequest extends AbstractRequest
+class RefundOrderRequest extends AbstractRequest
 {
 
     protected function getHttpMethod()
@@ -24,11 +24,11 @@ class RefundTicketRequest extends AbstractRequest
 
     /**
      * @param array $data
-     * @return RefundTicketResponse
+     * @return RefundOrderResponse
      */
     protected function createResponse(array $data)
     {
-        return new RefundTicketResponse($this, $data);
+        return new RefundOrderResponse($this, $data);
     }
 
     /**

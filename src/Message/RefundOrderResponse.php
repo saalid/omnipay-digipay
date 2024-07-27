@@ -9,7 +9,7 @@ namespace Omnipay\Digipay\Message;
 
 use Omnipay\Common\Message\RedirectResponseInterface;
 
-class RefundTicketResponse extends AbstractResponse implements RedirectResponseInterface
+class RefundOrderResponse extends AbstractResponse implements RedirectResponseInterface
 {
 
     /**

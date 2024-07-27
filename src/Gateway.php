@@ -11,7 +11,7 @@ use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Message\RequestInterface;
 use Omnipay\Digipay\Cache;
 use Omnipay\Digipay\Message\InquiryOrderRequest;
-use Omnipay\Digipay\Message\RefundTicketRequest;
+use Omnipay\Digipay\Message\RefundOrderRequest;
 use Omnipay\Digipay\Message\VerifyOrderRequest;
 use Omnipay\Digipay\Message\CreateOrderRequest;
 
@@ -165,7 +165,7 @@ class Gateway extends AbstractGateway
      */
     public function refund(array $options = []): RequestInterface
     {
-        return $this->createRequest(RefundTicketRequest::class, $options);
+        return $this->createRequest(RefundOrderRequest::class, $options);
     }
 
     /**

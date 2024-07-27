@@ -3,7 +3,7 @@
 namespace Omnipay\Digipay\Tests;
 
 use Omnipay\Digipay\Gateway;
-use Omnipay\Digipay\Message\RefundTicketResponse;
+use Omnipay\Digipay\Message\RefundOrderResponse;
 use Omnipay\Digipay\Message\VerifyOrderResponse;
 use Omnipay\Tests\GatewayTestCase;
 use Omnipay\Digipay\Message\CreateOrderRequest;
@@ -103,7 +103,7 @@ class GatewayTest extends TestCase
         ];
 
 
-        /** @var RefundTicketResponse $response */
+        /** @var RefundOrderResponse $response */
         $response = $this->gateway->refund($param)->send();
 
         self::assertTrue($response->isSuccessful());
