@@ -31,8 +31,6 @@ class CreateOrderRequest extends AbstractRequest
      */
     public function getData()
     {
-        // Validate required parameters before return data
-//        $this->validate('amount', 'cellNumber', 'returnUrl');
         return [
             'cellNumber' => $this->getPhoneNumber(),
             'amount' => (int)$this->getAmount(),

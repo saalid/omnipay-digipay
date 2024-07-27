@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package Omnipay\Digipay
+ * @author Amirreza Salari <amirrezasalari1997@gmail.com>
+ */
 
 namespace Omnipay\Digipay;
 
