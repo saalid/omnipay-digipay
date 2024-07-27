@@ -1,0 +1,13 @@
+HTTP/2 200
+server: nginx
+date: Fri, 30 Aug 2019 17:08:20 GMT
+content-type: application/json
+vary: Accept-Encoding
+vary: Accept-Encoding
+x-powered-by: PHP/7.0.7
+cache-control: private, must-revalidate
+pragma: no-cache
+expires: -1
+
+
+{"result": {"title": "SUCCESS","status": 0,"message": "عملیات با موفقیت انجام شد","level": "INFO"},"ticket": "v2:ab17ec383d654be3b009f9fc45202f80","redirectUrl": "https://uatweb.mydigipay.info/web-pay/tgs/v2:ab17ec383d654be3b009f9fc45202f80"}

@@ -8,7 +8,6 @@
 namespace Omnipay\Digipay\Message;
 
 use Exception;
-use Omnipay\Digipay\Message\AbstractResponse;
 use RuntimeException;
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Exception\InvalidResponseException;
@@ -378,9 +377,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                 throw new \RuntimeException('Err in generate new token.');
             }
 
-            $cache = $this->getCache();
-            $cache->store('accessToken', 'Bearer ' . $result['access_token'], $result['expires_in']);
-            $cache->store('refreshToken', $result['refresh_token'], $result['expires_in']);
             $this->setAccessToken('Bearer ' . $result['access_token']);
             $this->setRefreshToken($result['refresh_token']);
             return 'ok';
@@ -437,7 +433,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                 }
                 $result['httpStatus'] = 401;
             }
-            var_dump($result);
             return $this->response = $this->createResponse($result);
         } catch (Exception $e) {
             throw new InvalidResponseException(
