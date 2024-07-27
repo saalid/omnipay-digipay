@@ -3,6 +3,8 @@
 namespace Omnipay\Digipay\Tests;
 
 use Omnipay\Digipay\Gateway;
+use Omnipay\Digipay\Message\RefundTicketResponse;
+use Omnipay\Digipay\Message\VerifyOrderResponse;
 use Omnipay\Tests\GatewayTestCase;
 use Omnipay\Digipay\Message\CreateOrderRequest;
 use Omnipay\Digipay\Message\CreateOrderResponse;
@@ -74,68 +76,41 @@ class GatewayTest extends TestCase
 
     public function testCompletePurchaseSuccess(): void
     {
-        $this->setMockHttpResponse('PurchaseCompleteSuccess.txt');
+        $this->setMockHttpResponse(['GetToken.txt', 'PurchaseCompleteSuccess.txt']);
         $param= [
-            'ticketId' => 'PJQPHFwN1AM6EUAJ',
+            'transactionReference' => '19259313601650191846745',
+            'type' => 4,
         ];
 
 
-        /** @var VerifyTicketResponse $response */
+        /** @var VerifyOrderResponse $response */
         $response = $this->gateway->completePurchase($param)->send();
 
-        $responseData=$response->getData();
+        self::assertTrue($response->isSuccessful());
+        self::assertEquals('CPG',$response->getPaymentGatewayTypes());
+        self::assertEquals('132713002000200010',$response->getTransactionId());
+        self::assertEquals('19259313601650191846745',$response->getTransactionReference());
+    }
+
+    public function testRefundPurchaseSuccess(): void
+    {
+        $this->setMockHttpResponse(['GetToken.txt', 'PurchaseRefundSuccess.txt']);
+        $param= [
+            'type' => 4,
+            'amount' => 60,
+            'providerId' => rand(1111111, 999999999),
+            'saleTrackingCode' => 19259313601650191846745,
+        ];
+
+
+        /** @var RefundTicketResponse $response */
+        $response = $this->gateway->refund($param)->send();
 
         self::assertTrue($response->isSuccessful());
-        self::assertTrue($response->isVerified());
-        self::assertEquals('PJQPHFwN1AM6EUAJ',$responseData['result']['ticket_id']);
+        self::assertEquals('19259313601650191846745',$response->getTransactionReference());
     }
-//
-//    public  function testPurchaseCreatedStatus(): void
-//    {
-//        $this->setMockHttpResponse('PurchaseCreatedStatus.txt');
-//        $param= [
-//            'ticketId' => 'PJQPHFwN1AM6EUAJ',
-//        ];
-//        /** @var StatusTicketResponse $response */
-//        $response = $this->gateway->status($param)->send();
-//
-//        $responseData=$response->getData();
-//
-//        self::assertTrue($response->isSuccessful());
-//        self::assertTrue($response->isCreated());
-//        self::assertEquals('PJQPHFwN1AM6EUAJ',$responseData['result']['ticket_id']);
-//    }
-//
-//    public  function testPurchaseExpiredStatus(): void
-//    {
-//        $this->setMockHttpResponse('PurchaseExpiredStatus.txt');
-//        $param= [
-//            'ticketId' => 'PJQPHFwN1AM6EUAJ',
-//        ];
-//        /** @var StatusTicketResponse $response */
-//        $response = $this->gateway->statusPurchase($param)->send();
-//
-//        $responseData=$response->getData();
-//
-//        self::assertTrue($response->isSuccessful());
-//        self::assertTrue($response->isExpired());
-//        self::assertEquals('PJQPHFwN1AM6EUAJ',$responseData['result']['ticket_id']);
-//    }
-//
-//    public  function testPurchaseCancel(): void
-//    {
-//        $this->setMockHttpResponse('PurchaseCancel.txt');
-//        $param= [
-//            'ticketId' => 'PJQPHFwN1AM6EUAJ',
-//        ];
-//        /** @var CancelTicketResponse $response */
-//        $response = $this->gateway->cancel($param)->send();
-//
-//        $responseData=$response->getData();
-//
-//        self::assertTrue($response->isSuccessful());
-//        self::assertEquals($response->getFallBackUrl(),$responseData['result']['fallbackUri']);
-//    }
+
+
 
 
 }

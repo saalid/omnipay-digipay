@@ -9,5 +9,5 @@ cache-control: private, must-revalidate
 pragma: no-cache
 expires: -1
 
-{"rsCode":0,"result":{"rsCode":0,"ticket_id":"PJQPHFwN1AM6EUAJ","status":2}}
+{"result": {"status": 0, "message": "عملیات با موفقیت انجام شد", "level": "INFO"}, "trackingCode": "19259313601650191846745", "providerId": "132713002000200010", "fpCode": "7", "fpName": "DIGIPAY", "amount": 200000, "paymentGateway": 4, "additionalInfo": {"prepaymentAmount": 0, "cashAmount": 0, "creditAmount": 200000, "instantFinalization": false, "generateInvoice": false}}
 

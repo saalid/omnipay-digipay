@@ -18,8 +18,8 @@ class RefundTicketResponse extends AbstractResponse implements RedirectResponseI
     public function getTransactionReference()
     {
         /** @var VerifyOrderRequest $request */
-        $request = $this->request;
-        return $request->getTransactionReference();
+        $request = $this->data;
+        return $request['trackingCode'];
     }
 
 
