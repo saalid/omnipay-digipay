@@ -1,6 +1,6 @@
 ## Instalation
 
-    composer require inverseschool/omnipay-digipay
+    composer require saalid/omnipay-digipay
 
 ## Example
 

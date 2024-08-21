@@ -1,5 +1,5 @@
 {
-    "name": "inverseschool/omnipay-digipay",
+    "name": "saalid/omnipay-digipay",
     "type": "library",
     "description": "Digipay driver for the Omnipay payment processing library",
     "keywords": [
