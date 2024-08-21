@@ -19,7 +19,7 @@ class CreateOrderResponse extends AbstractResponse implements RedirectResponseIn
      */
     public function isSuccessful()
     {
-        return (int)$this->getCode() === 200 && $this->data['result']['status'] === 0;
+        return (int)$this->getHttpStatus() === 200 && $this->getCode() === 0;
     }
 
     /**
@@ -27,7 +27,7 @@ class CreateOrderResponse extends AbstractResponse implements RedirectResponseIn
      */
     public function isCancelled()
     {
-        return (int)$this->getCode() === 200 && $this->data['result']['status'] === 1;
+        return (int)$this->getHttpStatus() === 200 && $this->getCode() === 1;
     }
 
     /**

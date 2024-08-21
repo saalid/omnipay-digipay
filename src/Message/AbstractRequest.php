@@ -24,7 +24,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      *
      * @var string URL
      */
-    protected $liveEndpoint = 'https://uat.mydigipay.info/digipay/api';
+    protected $liveEndpoint = 'https://api.mydigipay.com/digipay/api';
 
     /**
      * @return string
@@ -171,10 +171,11 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function getAmount()
     {
-        $value = parent::getAmount();
+        $value = $this->getParameter('amount');
         $value = $value ?: $this->httpRequest->query->get('Amount');
-        return (string)$value;
+        return (int)$value;
     }
+
 
     /**
      * @return string
